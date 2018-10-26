@@ -37,4 +37,3 @@ class Api::UsersController < ApplicationController
   
 end
 
-end

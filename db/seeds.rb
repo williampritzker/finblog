@@ -1,3 +1,9 @@
+# Article.destroy_all
+# User.destroy_all
+# ArticleTag.destroy_all
+
+
+
 # User.create!([{name: "Will", email: "will@yahoo.com", password_digest: "password"}, {name: "Tayt", email: "tayt@gmail.com", password_digest: "password"}])
 
 # Page.create!([{title: "Markets"}, {title: "Private Equity"}, {title: "Banking"}])
@@ -16,4 +22,4 @@
 # his position against a series of challenges put to him by John Dobosz,
 # a Forbes editor...", user_id: 2, subpage_id: 1}])
 
-ArticleTag.create!([{tag_id: 1, article_id: 1}, {tag_id: 3, article_id: 2}])
+# ArticleTag.create!([{tag_id: 1, article_id: 1}, {tag_id: 3, article_id: 2}])

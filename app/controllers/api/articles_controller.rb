@@ -13,7 +13,17 @@ class Api::ArticlesController < ApplicationController
     subpage_id: params[:subpage_id])
 
     if @article.save   
+      
+      @tag_ids = params[:tag_ids]
+      @tag_ids.each do |tag_id|
+      @article_tag = Article_Tag.create(
+      article_id: @article.id,
+      tag_id: tag_id
+        )
+      end
+
       render 'show.json.jbuilder'
+    
     else 
       render json: {errors: @article.errors.full_messages}, status: :unprocessable_entity
     end
@@ -36,11 +46,6 @@ class Api::ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find_by(id: params[:id])
-    @article_tag_array = Article_Tag.where(article_id: params[:id]).ids
-    @article_tag_array.each do |article_tag_id|
-      @article_tag = Article_Tag.find_by(id: article_tag_id)
-      @article_tag.destroy
-    end
     @article.destroy
     render json: {message: "Article successfully destroyed!"}
   end
