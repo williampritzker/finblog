@@ -14,12 +14,12 @@ class Api::ArticlesController < ApplicationController
 
     if @article.save   
       
-      @tag_ids = params[:tag_ids]
+      @tag_ids = eval(params[:tag_ids]) #take out eval on front-end if sending an array
+      
       @tag_ids.each do |tag_id|
-      @article_tag = Article_Tag.create(
+      @article_tag = ArticleTag.create(
       article_id: @article.id,
-      tag_id: tag_id
-        )
+      tag_id: tag_id)
       end
 
       render 'show.json.jbuilder'
@@ -37,8 +37,19 @@ class Api::ArticlesController < ApplicationController
     @article.text = params[:text] || @article.text
     @article.subpage_id = params[:subpage_id] || @article.subpage_id
 
-    if @article.save
+    if @article.save   
+      
+      @article.article_tags.destroy_all
+
+      @tag_ids = eval(params[:tag_ids]) #take out eval on front-end if sending an array
+      
+      @tag_ids.each do |tag_id|
+      @article_tag = ArticleTag.create(
+      article_id: @article.id,
+      tag_id: tag_id)
+      end
       render 'show.json.jbuilder'
+    
     else 
       render json: {errors: @article.errors.full_messages}, status: :unprocessable_entity
     end
@@ -49,6 +60,5 @@ class Api::ArticlesController < ApplicationController
     @article.destroy
     render json: {message: "Article successfully destroyed!"}
   end
-
 
 end
