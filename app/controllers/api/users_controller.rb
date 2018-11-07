@@ -1,5 +1,10 @@
 class Api::UsersController < ApplicationController
 
+  def show
+    @user = User.find(params[:id])
+    render 'show.json.jbuilder'
+  end
+
   def create
     user = User.new(
       name: params[:name],
@@ -29,11 +34,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @user = User.find(params[:id])
-  #   @user.update(status: "removed")
-  #   render json: {messages: "user removed"}
-  # end
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    render json: {messages: "user removed"}
+  end
   
 end
 

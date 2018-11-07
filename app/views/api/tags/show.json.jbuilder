@@ -1,8 +1,6 @@
 json.partial! "tag.json.jbuilder", tag: @tag
 
-json.array! @tag.articles.each do |article|
-  json.partial! 'aritcle.json.jbuilder', article: article
+json.articles do
+  json.array! @tag.articles, partial: 'api/articles/article', as: :article
 end
-
-# call article partial inside array
 

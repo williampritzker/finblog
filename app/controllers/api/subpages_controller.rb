@@ -5,4 +5,9 @@ class Api::SubpagesController < ApplicationController
     render 'show.json.jbuilder'
   end
 
+  def index
+    @subpages = Subpage.all
+    render 'index.json.jbuilder'
+  end
+
 end

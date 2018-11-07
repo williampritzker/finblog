@@ -1,7 +1,9 @@
 json.partial! "subpage.json.jbuilder", subpage: @subpage
 
-json.array! @subpage.articles.each do |article|
-  json.title article.title
-  json.user_id article.user_id
-  json.text article.text
+json.articles do
+  json.array! @subpage.articles, partial: 'api/articles/article', as: :article
+end
+
+json.page do
+  json.partial! 'api/pages/page', page: @subpage.page
 end

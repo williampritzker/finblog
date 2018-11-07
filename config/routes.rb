@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     post "/users" => 'users#create'
     get "/users/:id" => 'users#show'
     delete "/users/:id" => 'users#destroy'
-    patch "/users/:id" => 'users#update'
     post "/sessions" => "sessions#create"
+    patch "/users/:id" => 'users#update'
 
     post "/articles" => 'articles#create'
     get "/articles/:id" => 'articles#show'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     delete "/articles/:id" => 'articles#destroy'
 
     get "/subpages/:id" => 'subpages#show'
+    get "/subpages/" => 'subpages#index'
 
     get "/pages/:id" => 'pages#show'
 

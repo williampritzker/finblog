@@ -14,7 +14,7 @@ class Api::ArticlesController < ApplicationController
 
     if @article.save   
       
-      @tag_ids = eval(params[:tag_ids]) #take out eval on front-end if sending an array
+      @tag_ids = (params[:tags]).split("") #take out eval on front-end if sending an array
       
       @tag_ids.each do |tag_id|
       @article_tag = ArticleTag.create(
