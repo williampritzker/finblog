@@ -5,6 +5,11 @@ class Api::UsersController < ApplicationController
     render 'show.json.jbuilder'
   end
 
+  def profile
+    @user = current_user
+    render 'show.json.jbuilder'
+  end
+
   def create
     user = User.new(
       name: params[:name],

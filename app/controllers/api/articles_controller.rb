@@ -41,7 +41,7 @@ class Api::ArticlesController < ApplicationController
       
       @article.article_tags.destroy_all
 
-      @tag_ids = eval(params[:tag_ids]) #take out eval on front-end if sending an array
+      @tag_ids = (params[:tags]).split("") 
       
       @tag_ids.each do |tag_id|
       @article_tag = ArticleTag.create(

@@ -5,5 +5,10 @@ class Api::PagesController < ApplicationController
     render "show.json.jbuilder"
   end
 
+  def index
+    @pages = Page.all
+    render 'index.json.jbuilder'
+  end
+
 
 end

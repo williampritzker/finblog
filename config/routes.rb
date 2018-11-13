@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     post "/users" => 'users#create'
+    get "/users/me" => 'users#profile'
     get "/users/:id" => 'users#show'
+
     delete "/users/:id" => 'users#destroy'
     post "/sessions" => "sessions#create"
     patch "/users/:id" => 'users#update'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
     get "/subpages/" => 'subpages#index'
 
     get "/pages/:id" => 'pages#show'
+    get "/pages/" => 'pages#index'
 
     get "/tags/:id" => 'tags#show'
     get "/tags/" => 'tags#index'
